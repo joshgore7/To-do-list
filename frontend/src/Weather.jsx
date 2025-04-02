@@ -11,11 +11,11 @@ function Weather() {
         if (city === '') return;
         
         try {
-            const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`);
+            const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${API_KEY}`);
             const data = await response.json();
             
             if (data.cod === "404") {
-                setError("City not found");
+                setError("Invalid Location");
                 setWeather(null);
                 return;
             }
@@ -54,7 +54,7 @@ function Weather() {
                     placeholder="Enter city name"
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
-                    onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
+                    // onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
                 />
                 <button onClick={handleSearch}>Search</button>
             </div>
@@ -69,7 +69,7 @@ function Weather() {
                 <>
                     <div className="weather-box">
                         {getWeatherIcon(weather.weather[0].main)}
-                        <div className="temp">{Math.round(weather.main.temp - 273.15)}°C</div>
+                        <div className="temp">{Math.round(weather.main.temp)}°F</div>
                         <div className="desc">{weather.weather[0].description}</div>
                     </div>
 
