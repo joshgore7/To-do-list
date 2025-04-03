@@ -1,0 +1,87 @@
+.todo-container {
+    background-color: var(--medium);
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%;
+    margin: 0 auto;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.todo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.todo-header h2 {
+    margin: 0;
+    color: var(--grey);
+    font-size: 28px;
+}
+.mui-btn {
+    background-color: var(--dark) !important;
+    color: var(--grey) !important;
+    transition: all 0.3s ease !important;
+    border-radius: 8px !important;
+    padding: 8px 12px !important;
+    font-size: 14px !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+.mui-btn:hover {
+    transform: translateY(-1px) !important;
+}
+.input-box {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.input-box input,
+.subtask-input input {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid var(--dark);
+    border-radius: 8px;
+    font-size: 14px;
+    background-color: var(--medium);
+}
+.input-box input:focus,
+.subtask-input input:focus {
+    outline: none;
+    border-color: var(--dark);
+}
+.subtask-input {
+    display: flex;
+    gap: 10px;
+    padding: 5px;
+    background-color: var(--medium);
+    border-radius: 8px;
+    margin: 2px ;
+}
+.MuiListItem-root.completed .MuiListItemText-primary {
+    text-decoration: line-through;
+    color: var(--grey);
+}
+.MuiIconButton-root.MuiIconButton-colorError {
+    color: #ff4444 !important;
+}
+.MuiListItem-root {
+    background: var(--medium);
+    border-radius: 8px;
+    margin-top: 7px;
+    border: 2px solid var(--dark);
+    cursor: pointer;
+}
+.MuiIconButton-root {
+    transition: transform 0.2s;
+}
+.MuiIconButton-root:hover {
+    transform: scale(1.1);
+}
+.MuiCollapse-root {
+    background-color: var(--light);
+    border-radius: 8px;
+    margin: 10px 30px;
+    padding: 8px;
+} 
+.MuiButton-root {
+    text-transform: none !important;
+}
