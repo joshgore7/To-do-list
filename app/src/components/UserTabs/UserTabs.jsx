@@ -5,7 +5,7 @@ function UserTabs({ users, activeUser, onUserSelect, onUserUpdate }) {
   const [editingUser, setEditingUser] = useState(null);
   const [editName, setEditName] = useState('');
 
-  const handleAddUser = () => {
+  const addUser = () => {
     const newUser = {
       id: users.length + 1,
       name: `User ${users.length + 1}`
@@ -13,17 +13,17 @@ function UserTabs({ users, activeUser, onUserSelect, onUserUpdate }) {
     onUserUpdate([...users, newUser]);
   };
 
-  const handleDeleteUser = (userId) => {
-    if (users.length === 1) return; // Don't delete the last user
+  const deleteUser = (userId) => {
+    if (users.length === 1) return; 
     onUserUpdate(users.filter(user => user.id !== userId));
   };
 
-  const handleStartEdit = (user) => {
+  const editStart = (user) => {
     setEditingUser(user.id);
     setEditName(user.name);
   };
 
-  const handleSaveEdit = (userId) => {
+  const editSave = (userId) => {
     if (!editName.trim()) return;
     onUserUpdate(users.map(user => 
       user.id === userId ? { ...user, name: editName.trim() } : user
@@ -31,7 +31,7 @@ function UserTabs({ users, activeUser, onUserSelect, onUserUpdate }) {
     setEditingUser(null);
   };
 
-  const handleCancelEdit = () => {
+  const editCancel = () => {
     setEditingUser(null);
   };
 
@@ -52,18 +52,18 @@ function UserTabs({ users, activeUser, onUserSelect, onUserUpdate }) {
                   onChange={(e) => setEditName(e.target.value)}
                   className="edit-user-input"
                   autoFocus
-                  onKeyPress={(e) => e.key === 'Enter' && handleSaveEdit(user.id)}
+                  onKeyPress={(e) => e.key === 'Enter' && editSave(user.id)}
                 />
                 <div className="edit-user-actions">
                   <button 
                     className="save-edit"
-                    onClick={() => handleSaveEdit(user.id)}
+                    onClick={() => editSave(user.id)}
                   >
                     ✓
                   </button>
                   <button 
                     className="cancel-edit"
-                    onClick={handleCancelEdit}
+                    onClick={editCancel}
                   >
                     ✕
                   </button>
@@ -76,7 +76,7 @@ function UserTabs({ users, activeUser, onUserSelect, onUserUpdate }) {
                   className="edit-tab"
                   onClick={(e) => {
                     e.stopPropagation();
-                    handleStartEdit(user);
+                    editStart(user);
                   }}
                 >
                   ✎
@@ -86,7 +86,7 @@ function UserTabs({ users, activeUser, onUserSelect, onUserUpdate }) {
                     className="delete-tab"
                     onClick={(e) => {
                       e.stopPropagation();
-                      handleDeleteUser(user.id);
+                      deleteUser(user.id);
                     }}
                   >
                     ×
@@ -97,7 +97,7 @@ function UserTabs({ users, activeUser, onUserSelect, onUserUpdate }) {
           </div>
         ))}
       </div>
-      <button className="add-tab" onClick={handleAddUser}>
+      <button className="add-tab" onClick={addUser}>
         + Add User
       </button>
     </div>

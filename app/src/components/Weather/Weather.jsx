@@ -12,7 +12,7 @@ function Weather({ userId }) {
     const [loading, setLoading] = useState(false);
     const API_KEY = '1137b67fbe2a4f8466bad32213b37b6f'; 
 
-    // Load saved city for this user
+    // Load saved city for user
     useEffect(() => {
         const savedCity = localStorage.getItem(`weather_city_${userId}`);
         if (savedCity) {

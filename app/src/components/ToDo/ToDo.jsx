@@ -37,7 +37,7 @@ function ToDo({ userId }) {
         localStorage.setItem(`tasks_${userId}`, JSON.stringify(taskList));
     }, [taskList, userId]);
 
-    const handleAddTask = () => {
+    const addTask = () => {
         if (!task.trim()) return;
         setTaskList([...taskList, {
             id: Date.now(),
@@ -48,17 +48,17 @@ function ToDo({ userId }) {
         setTask('');
     };
 
-    const handleDeleteTask = (id) => {
+    const deleteTask = (id) => {
         setTaskList(taskList.filter(task => task.id !== id));
     };
 
-    const handleToggleTask = (id) => {
+    const toggleTask = (id) => {
         setTaskList(taskList.map(task => 
             task.id === id ? { ...task, completed: !task.completed } : task
         ));
     };
 
-    const handleAddSubtask = (taskId) => {
+    const addSubtask = (taskId) => {
         if (!subtask.trim()) return;
         setTaskList(taskList.map(task => 
             task.id === taskId ? {
@@ -69,7 +69,7 @@ function ToDo({ userId }) {
         setSubtask('');
     };
 
-    const handleToggleSubtask = (taskId, subtaskId) => {
+    const toggleSubtask = (taskId, subtaskId) => {
         setTaskList(taskList.map(task => 
             task.id === taskId ? {
                 ...task,
@@ -80,7 +80,7 @@ function ToDo({ userId }) {
         ));
     };
 
-    const handleDeleteSubtask = (taskId, subtaskId, e) => {
+    const deleteSubtask = (taskId, subtaskId, e) => {
         e.stopPropagation();
         setTaskList(taskList.map(task => 
             task.id === taskId ? {
@@ -94,7 +94,7 @@ function ToDo({ userId }) {
         setOpenSubtasks(prev => ({ ...prev, [taskId]: !prev[taskId] }));
     };
 
-    const handleClearCompleted = () => {
+    const clearCompleted = () => {
         setTaskList(taskList.map(task => ({
             ...task,
             completed: false,
@@ -112,7 +112,7 @@ function ToDo({ userId }) {
                 <Button
                     variant="contained"
                     color="secondary"
-                    onClick={handleClearCompleted}
+                    onClick={clearCompleted}
                     startIcon={<ClearAllIcon />}
                     className="mui-btn"
                 >
@@ -125,11 +125,11 @@ function ToDo({ userId }) {
                     placeholder="Add a new task"
                     value={task}
                     onChange={(e) => setTask(e.target.value)}
-                    onKeyPress={(e) => e.key === 'Enter' && handleAddTask()}
+                    onKeyPress={(e) => e.key === 'Enter' && addTask()}
                 />
                 <Button
                     variant="contained"
-                    onClick={handleAddTask}
+                    onClick={addTask}
                     startIcon={<AddIcon />}
                     className="mui-btn"
                 >
@@ -142,7 +142,7 @@ function ToDo({ userId }) {
                     <div key={task.id}>
                         <ListItem
                             button
-                            onClick={() => handleToggleTask(task.id)}
+                            onClick={() => toggleTask(task.id)}
                             className={task.completed ? 'completed' : ''}
                         >
                             <ListItemText primary={task.text} />
@@ -156,7 +156,7 @@ function ToDo({ userId }) {
                                 </IconButton>
                                 <IconButton
                                     edge="end"
-                                    onClick={() => handleDeleteTask(task.id)}
+                                    onClick={() => deleteTask(task.id)}
                                     color="error"
                                 >
                                     <DeleteIcon />
@@ -172,12 +172,12 @@ function ToDo({ userId }) {
                                         placeholder="Add a subtask"
                                         value={subtask}
                                         onChange={(e) => setSubtask(e.target.value)}
-                                        onKeyPress={(e) => e.key === 'Enter' && handleAddSubtask(task.id)}
+                                        onKeyPress={(e) => e.key === 'Enter' && addSubtask(task.id)}
                                     />
                                     <Button
                                         variant="contained"
                                         size="small"
-                                        onClick={() => handleAddSubtask(task.id)}
+                                        onClick={() => addSubtask(task.id)}
                                         startIcon={<AddIcon />}
                                         className="mui-btn"
                                     >
@@ -188,13 +188,13 @@ function ToDo({ userId }) {
                                     <ListItem
                                         key={subtask.id}
                                         button
-                                        onClick={() => handleToggleSubtask(task.id, subtask.id)}
+                                        onClick={() => toggleSubtask(task.id, subtask.id)}
                                         className={subtask.completed ? 'completed' : ''}
                                     >
                                         <ListItemText primary={subtask.text} />
                                         <IconButton
                                             edge="end"
-                                            onClick={(e) => handleDeleteSubtask(task.id, subtask.id, e)}
+                                            onClick={(e) => deleteSubtask(task.id, subtask.id, e)}
                                             color="error"
                                         >
                                             <DeleteIcon />
