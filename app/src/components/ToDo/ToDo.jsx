@@ -24,7 +24,7 @@ function ToDo({ userId }) {
     const [subtask, setSubtask] = useState('');
     const [openSubtasks, setOpenSubtasks] = useState({});
 
-    // Load tasks from localStorage when component mounts or userId changes
+
     useEffect(() => {
         const savedTasks = localStorage.getItem(`tasks_${userId}`);
         if (savedTasks) {
@@ -32,7 +32,7 @@ function ToDo({ userId }) {
         }
     }, [userId]);
 
-    // Save tasks to localStorage whenever they change
+
     useEffect(() => {
         localStorage.setItem(`tasks_${userId}`, JSON.stringify(taskList));
     }, [taskList, userId]);

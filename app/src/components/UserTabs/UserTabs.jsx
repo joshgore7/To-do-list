@@ -65,7 +65,7 @@ function UserTabs({ users, activeUser, onUserSelect, onUserUpdate }) {
                     className="cancel-edit"
                     onClick={editCancel}
                   >
-                    ✕
+                    x
                   </button>
                 </div>
               </div>
@@ -89,7 +89,7 @@ function UserTabs({ users, activeUser, onUserSelect, onUserUpdate }) {
                       deleteUser(user.id);
                     }}
                   >
-                    ×
+                    x
                   </button>
                 )}
               </>
